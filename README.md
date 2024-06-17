@@ -20,7 +20,7 @@ Documentações adicionais se encontram dentro da pasta `docs`.
 
 ## Suporte
 
-Havendo dúvidas ou problemas, entre em contato com [@CAVAh](https://github.com/CAVAh).
+Havendo dúvidas ou problemas, entre em contato com [@lipe-alves](https://github.com/lipe-alves) ou [@CAVAh](https://github.com/CAVAh).
 
 ## Agradecimentos
 
