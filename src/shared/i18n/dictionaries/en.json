@@ -10,6 +10,7 @@
     "Assinando um contrato": "Signing a contract",
     "@appName - Assinaturas Digitais Simplificadas": "@appName - Simplified Digital Signatures",
     "@appName - Criar uma conta": "@appName - Create an account",
+    "@appName - Entrar": "@appName - Login",
     "Bem-vindo ao @appName, a sua solução definitiva para assinaturas digitais de documentos. Nossa plataforma intuitiva e segura transforma o processo de assinatura digital, tornando-o mais rápido, mais fácil e completamente sem papel. Junte-se a nós na jornada para um futuro mais verde e eficiente.": "Welcome to @appName, your ultimate solution for digital document signatures. Our intuitive and secure platform transforms the digital signing process, making it faster, easier, and completely paperless. Join us on the journey to a greener and more efficient future.",
     "Crie a sua conta": "Create your account",
     "A criação de uma conta só leva 30 segundos": "Registration only takes 30 seconds",
@@ -30,7 +31,13 @@
     "Confirme a senha": "Confirm your password",
     "Confirme sua senha deve ser igual à sua senha": "Confirm your password must be equal to your password",
     "Criar conta": "Create account",
+    "Entrar": "Login",
+    "Registrar": "Register",
     "Já possui uma conta?": "Already have an account?",
-    "Clique aqui": "Login here",
-    "Ou registre-se usando": "Or register using"
+    "Clique aqui": "Click here",
+    "Ou registre-se usando": "Or register using",
+    "Ou entre usando": "Or login using",
+    "Não possui uma conta?": "Don't have an account?",
+    "Entre na sua conta": "Login your account",
+    "Coloque seu email e senha para se autenticar": "Type your email address and password to authenticate"
 }
