@@ -3,7 +3,7 @@
 import React from "react";
 import { IconButton } from "@mui/material";
 
-import { LanguageSelector, Logo } from "@client/components";
+import { LanguageSelector } from "@client/components";
 import { useNavigation } from "@client/providers";
 
 import { Home } from "styled-icons/entypo";
@@ -26,9 +26,6 @@ function Header() {
                 >
                     <Home />
                 </IconButton>
-            </div>
-            <div className={styles.HeaderMiddle}>
-                <Logo />
             </div>
             <div className={styles.HeaderRight}>
                 <LanguageSelector />
