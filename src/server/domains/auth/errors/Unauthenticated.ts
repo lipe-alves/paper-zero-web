@@ -1,8 +1,8 @@
-import APIError, { APIErrorParams } from "@server/errors/APIError";
+import ApiError, { ApiErrorParams } from "@root/server/errors/ApiError";
 import { RESPONSE_CODES } from "@shared/constants";
 
-class Unauthenticated<T> extends APIError<T> {
-    constructor(params: Partial<APIErrorParams<T>> = {}) {
+class Unauthenticated<T> extends ApiError<T> {
+    constructor(params: Partial<ApiErrorParams<T>> = {}) {
         const {
             status = 401,
             code = RESPONSE_CODES.UNAUTHENTICATED,

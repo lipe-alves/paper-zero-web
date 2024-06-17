@@ -1,20 +1,20 @@
 import { ResponseCode, ResponseFormat } from "@shared/types";
 import { RESPONSE_CODES } from "@shared/constants";
 
-interface APIErrorParams<T> {
+interface ApiErrorParams<T> {
     status: number;
     code: ResponseCode;
     message: string;
     data: T;
 }
 
-class APIError<T> extends Error implements ResponseFormat<T> {
+class ApiError<T> extends Error implements ResponseFormat<T> {
     public readonly success: false;
     public status: number;
     public code: ResponseCode;
     public data: T;
 
-    constructor(params: APIErrorParams<T>) {
+    constructor(params: ApiErrorParams<T>) {
         const { message, status, code, data } = params;
         super(message);
 
@@ -24,8 +24,8 @@ class APIError<T> extends Error implements ResponseFormat<T> {
         this.data = data;
     }
 
-    public static from(error: any): APIError<any> {
-        return new APIError<any>({
+    public static from(error: any): ApiError<any> {
+        return new ApiError<any>({
             status: error.status || 500,
             code: error.code || RESPONSE_CODES.INTERNAL_SERVER_ERROR,
             message: error.message || "Erro Interno do Servidor",
@@ -34,6 +34,6 @@ class APIError<T> extends Error implements ResponseFormat<T> {
     }
 }
 
-export default APIError;
-export { APIError };
-export type { APIErrorParams };
+export default ApiError;
+export { ApiError };
+export type { ApiErrorParams };

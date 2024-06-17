@@ -1,8 +1,8 @@
-import APIError, { APIErrorParams } from "./APIError";
+import ApiError, { ApiErrorParams } from "./ApiError";
 import { RESPONSE_CODES } from "@shared/constants";
 
-class ClientError<T> extends APIError<T> {
-    constructor(params: Partial<APIErrorParams<T>> = {}) {
+class ClientError<T> extends ApiError<T> {
+    constructor(params: Partial<ApiErrorParams<T>> = {}) {
         const {
             status = 400,
             code = RESPONSE_CODES.INTERNAL_SERVER_ERROR,

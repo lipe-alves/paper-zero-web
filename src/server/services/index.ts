@@ -1,1 +1,1 @@
-export * from "./APIResponse";
+export * from "./ApiResponse";

@@ -1,8 +1,8 @@
-import APIError, { APIErrorParams } from "./APIError";
+import ApiError, { ApiErrorParams } from "./ApiError";
 import { RESPONSE_CODES } from "@shared/constants";
 
-class ResourceNotFoundError<T> extends APIError<T> {
-    constructor(params: Partial<APIErrorParams<T>> = {}) {
+class ResourceNotFoundError<T> extends ApiError<T> {
+    constructor(params: Partial<ApiErrorParams<T>> = {}) {
         const {
             status = 404,
             code = RESPONSE_CODES.RESOURCE_NOT_FOUND,
