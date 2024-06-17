@@ -1,6 +1,6 @@
-import { APIResponse } from "@server/services";
-import { Controller } from "@server/types";
-import { APIError, ClientError } from "@server/errors";
+import { ApiResponse } from "@server/services";
+import { Controller, RequestData } from "@server/types";
+import { ApiError, ClientError } from "@server/errors";
 import { User } from "@shared/models";
 
 import { RESPONSE_CODES } from "@shared/constants";
@@ -8,11 +8,18 @@ import { validator } from "@shared/utils";
 
 import { loginUser } from "../use-cases";
 
-interface LoginResponseData {
+interface LoginInputData extends RequestData {
+    body: {
+        email?: string;
+        password?: string;
+    };
+}
+
+interface LoginOutputData {
     user: User;
 }
 
-const loginController: Controller<LoginResponseData> = async (req) => {
+const loginController = async function (req) {
     const { email, password } = req.body;
 
     try {
@@ -36,7 +43,7 @@ const loginController: Controller<LoginResponseData> = async (req) => {
 
         const { user, session } = await loginUser(email, password);
 
-        return APIResponse.send({
+        return ApiResponse.send({
             status: 200,
             success: true,
             code: RESPONSE_CODES.SUCCESS,
@@ -47,9 +54,9 @@ const loginController: Controller<LoginResponseData> = async (req) => {
             },
         });
     } catch (error) {
-        return APIResponse.send(APIError.from(error));
+        return ApiResponse.send(ApiError.from(error));
     }
-};
+} as Controller<LoginInputData, LoginOutputData>;
 
 export { loginController };
 export default loginController;
