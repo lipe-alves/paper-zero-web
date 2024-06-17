@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useMemo } from "react";
 
 import { PASSWORD_MIN_LENGTH } from "@shared/constants";
-import { ContextProviderProps } from "@shared/types";
+import { ContextProviderProps } from "@client/types";
 import { User } from "@shared/models";
 import { validator } from "@shared/utils";
 

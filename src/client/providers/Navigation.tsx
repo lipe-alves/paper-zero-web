@@ -4,7 +4,7 @@ import React, { createContext, useContext } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { useI18n } from "./I18n";
-import { ContextProviderProps } from "@shared/types";
+import { ContextProviderProps } from "@client/types";
 import { Language } from "@shared/i18n";
 
 interface NavigationOptions {

@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState } from "react";
 
 import { ModalProps } from "@client/components";
-import { Optional, ContextProviderProps } from "@shared/types";
+import { Optional, ContextProviderProps } from "@client/types";
 
 type ModalOptions = Optional<ModalProps, "visible">;
 

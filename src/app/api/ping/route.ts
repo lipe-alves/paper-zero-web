@@ -1,5 +1,5 @@
 import { APIResponse } from "@server/services";
-import { Controller } from "@shared/types";
+import { Controller } from "@server/types";
 import { RESPONSE_CODES } from "@shared/constants";
 import { IncomingHttpHeaders } from "http";
 

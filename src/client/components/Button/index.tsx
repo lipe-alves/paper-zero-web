@@ -3,7 +3,7 @@ import {
     Button as MuiButton,
     ButtonProps as MuiButtonProps,
 } from "@mui/material";
-import { ButtonVariant, Color, Tone } from "@shared/types";
+import { ButtonVariant, Color, Tone } from "@client/types";
 import styles from "./styles.module.scss";
 
 interface ButtonProps extends Omit<MuiButtonProps, "variant" | "color"> {

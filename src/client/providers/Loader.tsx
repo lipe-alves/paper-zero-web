@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-import { ContextProviderProps } from "@shared/types";
+import { ContextProviderProps } from "@client/types";
 
 interface LoaderValue {
     show: () => void;

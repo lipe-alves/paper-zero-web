@@ -3,7 +3,7 @@
 import React, { createContext, useContext } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-import { ContextProviderProps } from "@shared/types";
+import { ContextProviderProps } from "@client/types";
 import {
     Dictionary,
     Language,
