@@ -1,7 +1,4 @@
-import type { NextApiRequest } from "next";
-import type { NextRequest } from "next/server";
 import { RESPONSE_CODES } from "@shared/constants";
-import { APIResponse } from "@shared/utils";
 
 export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
