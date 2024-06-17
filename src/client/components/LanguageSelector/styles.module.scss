@@ -1,0 +1,22 @@
+@import "@client/styles/variables";
+
+.LanguageSelector {
+    fieldset {
+        border: none !important;
+    }
+
+    &Option,
+    div[role="combobox"] {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: $spacing-sm !important;
+
+        img {
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+    }
+}

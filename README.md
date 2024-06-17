@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🖋 Paper Zero Sign Web
 
-## Getting Started
+## Introdução
 
-First, run the development server:
+Esse é o r para a parte do front end do projeto Paper Zero que tem como objetivo permitir a assinatura digital de documentos de forma segura e eficiente.
+Link para a API do projeto: [Paper Zero Sign API](https://github.com/CAVAh/paper-zero-sign-api/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Começando e instalando
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Instruções sobre como configurar, integrar e começar a usar a API, podem ser encontrados em [Guia de Instalação](docs/GUIA_INSTALACAO.md).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Documentação Adicional
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Documentações adicionais se encontram dentro da pasta `docs`.
 
-## Learn More
+-   [Estrutura de diretórios](docs/ESTRUTURA_DIRETORIOS.md)
+-   [Guia de Estilo de Código](docs/GUIA_ESTILO_CODIGO.md)
+-   [Conventional Commits](docs/CONVENTIONAL_COMMITS.md)
+-   [Guia de Instalação](docs/GUIA_INSTALACAO.md)
 
-To learn more about Next.js, take a look at the following resources:
+## Suporte
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Havendo dúvidas ou problemas, entre em contato com [@CAVAh](https://github.com/CAVAh).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Agradecimentos
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Agradecimentos a todos colaboradores e apoiadores desse projeto.

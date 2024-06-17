@@ -1,0 +1,26 @@
+@import "@client/styles/variables";
+@import "@client/styles/colors";
+
+.Button {
+    --button-color: var(--primary-50);
+
+    @each $color-type in $color-types {
+        &[data-color="#{$color-type}"] {
+            @each $tone in $tones {
+                &[data-tone="#{$tone}"] {
+                    --button-color: var(--#{$color-type}-#{$tone});
+                }
+            }
+        }
+    }
+
+    &[data-variant="contained"] {
+        background-color: var(--button-color);
+        color: $text-10;
+    }
+
+    &[data-variant="outlined"] {
+        background-color: transparent;
+        color: var(--button-color);
+    }
+}
