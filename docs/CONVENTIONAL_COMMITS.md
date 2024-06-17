@@ -1,9 +1,10 @@
-## ✨ Conventional Commits
+# ✨ Conventional Commits
 
 | Tipo de Commit | Título                  | Descrição                                                                    | Emoji |
 | -------------- | ----------------------- | ---------------------------------------------------------------------------- | ----- |
 | feat           | Funcionalidades         | Uma nova funcionalidade                                                      | ✨    |
 | fix            | Correções de Bugs       | Uma correção de bug                                                          | 🐛,🚑 |
+| layout         | Layout                  | Uma alteração no layout que não é uma nova feature                           | 🎨    |
 | docs           | Documentação            | Apenas mudanças na documentação                                              | 📝    |
 | style          | Estilos                 | Mudanças que não afetam o significado do código                              | 💄    |
 | refactor       | Refatoração de Código   | Uma mudança de código que não corrige um bug nem adiciona uma funcionalidade | ♻️,🔥 |
