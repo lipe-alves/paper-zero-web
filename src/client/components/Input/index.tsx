@@ -8,7 +8,7 @@ import {
     TextFieldProps,
 } from "@mui/material";
 
-import { InputVariant } from "@root/shared/types";
+import { InputVariant } from "@client/types";
 import { onEnterPress } from "@shared/utils";
 
 import { EyeOff2 } from "styled-icons/evaicons-solid";
