@@ -51,7 +51,7 @@ function Main() {
 
     const passwordRuleToLabel = {
         length: t("A senha deve ter pelo menos @passwordMinLength caracteres", {
-            passwordMinLength: PASSWORD_MIN_LENGTH,
+            passwordMinLength: String(PASSWORD_MIN_LENGTH),
         }),
         specialChars: t("A senha deve conter pelo menos um caractere especial"),
         numbers: t("A senha deve conter pelo menos um número"),
@@ -59,6 +59,19 @@ function Main() {
         uppercase: t("A senha deve conter pelo menos uma letra maiúscula"),
         lowercase: t("A senha deve conter pelo menos uma letra minúscula"),
     };
+
+    const passwordRuleEntries = Object.entries(passwordValidationRules) as [
+        key: keyof typeof passwordValidationRules,
+        validate: (value: string) => boolean
+    ][];
+
+    const passwordRulesToItems = passwordRuleEntries
+        .filter(([key]) => !!passwordRuleToLabel[key])
+        .map(([key, validate]) => ({
+            key,
+            label: passwordRuleToLabel[key],
+            isValid: validate(password),
+        }));
 
     return (
         <main className={styles.Main}>
@@ -119,27 +132,18 @@ function Main() {
                 />
                 {password && !passwordIsValid && (
                     <ul className={styles.MainRuleList}>
-                        {Object.entries(passwordValidationRules)
-                            .filter(([key]) => !!passwordRuleToLabel[key])
-                            .map(([key, validate]) => [
-                                key,
-                                passwordRuleToLabel[key],
-                                validate(password),
-                            ])
-                            .map(([key, label, isValid]) => (
-                                <li
-                                    key={key}
-                                    className={styles.MainRuleListRule}
-                                    data-checked={isValid}
-                                >
-                                    <span
-                                        className={styles.MainRuleListRuleIcon}
-                                    >
-                                        {isValid ? <Check /> : <CloseOutline />}
-                                    </span>
-                                    {label}
-                                </li>
-                            ))}
+                        {passwordRulesToItems.map(({ key, label, isValid }) => (
+                            <li
+                                key={key}
+                                className={styles.MainRuleListRule}
+                                data-checked={isValid}
+                            >
+                                <span className={styles.MainRuleListRuleIcon}>
+                                    {isValid ? <Check /> : <CloseOutline />}
+                                </span>
+                                {label}
+                            </li>
+                        ))}
                     </ul>
                 )}
                 <Input
