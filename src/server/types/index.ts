@@ -1,8 +1,9 @@
-import type { NextApiRequest } from "next";
 import { ApiResponse } from "@server/services";
-import { ResponseFormat } from "@shared/types";
 
 export interface RequestData {
+    headers?: Partial<{
+        [key: string]: string;
+    }>;
     query: Partial<{
         [key: string]: string | string[];
     }>;
@@ -17,11 +18,10 @@ export interface RequestData {
     }>;
 }
 
-export interface ApiRequest<InputData extends RequestData>
-    extends NextApiRequest {
+export interface ApiRequest<InputData extends RequestData> extends Request {
     query: InputData["query"];
     params: InputData["params"];
-    body: InputData["body"];
+    body: InputData["body"] & Request["body"];
     cookies: InputData["cookies"];
 }
 
@@ -32,3 +32,7 @@ export type Middleware<T extends RequestData> = (
 export type Controller<InputData extends RequestData, OutputData> = (
     req: ApiRequest<InputData>
 ) => ApiResponse<OutputData> | Promise<ApiResponse<OutputData>>;
+
+export type UseCase<InputData, OutputData> = (
+    input: InputData
+) => Promise<OutputData> | OutputData;
