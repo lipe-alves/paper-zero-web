@@ -8,8 +8,9 @@ import {
     I18nProvider,
     LoaderProvider,
     ModalProvider,
-    NavigationProvider,
     ToastProvider,
+    NavigationProvider,
+    AuthProvider,
 } from "@client/providers";
 import { Composer, ComponentList } from "@client/components";
 
@@ -61,6 +62,7 @@ function RootLayout(props: RootLayoutProps) {
         ModalProvider,
         ToastProvider,
         NavigationProvider,
+        AuthProvider,
     ];
 
     return (
