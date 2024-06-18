@@ -8,3 +8,5 @@ export type { InputProps } from "./Input";
 export { Logo } from "./Logo";
 export { Spinner } from "./Spinner";
 export type { SpinnerProps } from "./Spinner";
+export { Protected } from "./Protected";
+export type { ProtectedProps } from "./Protected";
