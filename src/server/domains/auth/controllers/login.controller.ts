@@ -1,21 +1,21 @@
 import { ApiResponse } from "@server/services";
 import { Controller, RequestData } from "@server/types";
 import { ApiError, ClientError } from "@server/errors";
-import { User } from "@shared/models";
 
+import { User } from "@shared/models";
 import { RESPONSE_CODES } from "@shared/constants";
 import { validator } from "@shared/utils";
 
-import { loginUser } from "../use-cases";
+import { loginUseCase } from "../use-cases";
 
-interface LoginInputData extends RequestData {
+interface LoginControllerInput extends RequestData {
     body: {
         email?: string;
         password?: string;
     };
 }
 
-interface LoginOutputData {
+interface LoginControllerOutput {
     user: User;
 }
 
@@ -41,7 +41,7 @@ const loginController = async function (req) {
             });
         }
 
-        const { user, session } = await loginUser(email, password);
+        const { user } = await loginUseCase({ email, password });
 
         return ApiResponse.send({
             status: 200,
@@ -50,13 +50,13 @@ const loginController = async function (req) {
             message: "Logado com sucesso!",
             data: {
                 user,
-                session,
             },
         });
     } catch (error) {
         return ApiResponse.send(ApiError.from(error));
     }
-} as Controller<LoginInputData, LoginOutputData>;
+} as Controller<LoginControllerInput, LoginControllerOutput>;
 
 export { loginController };
+export type { LoginControllerInput, LoginControllerOutput };
 export default loginController;
