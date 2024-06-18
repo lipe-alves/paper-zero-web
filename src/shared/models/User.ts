@@ -1,10 +1,14 @@
+import { EntityId } from "@shared/types";
+
 class User {
+    public id: EntityId;
     public name: string;
     public email?: string;
     public phone?: string;
 
     constructor(data: Partial<User> = {}) {
         const {
+            id = "",
             name = "",
             firstName = "",
             lastName = "",
@@ -12,6 +16,7 @@ class User {
             phone = "",
         } = data;
 
+        this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;

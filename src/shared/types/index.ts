@@ -4,6 +4,7 @@ export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
 export type { ReplaceMatrix, Dictionary, Language } from "@shared/i18n";
 
+export type EntityId = string | number;
 export type MediaType = "video" | "photo";
 export type Operator =
     | "<"
