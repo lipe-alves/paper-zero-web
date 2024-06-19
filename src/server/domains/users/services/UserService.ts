@@ -4,8 +4,8 @@ import { mergeListsByProperty } from "@shared/utils";
 
 class UserService {
     public static registerUser(user: User) {
-        const usersJson = CookieService.get("users");
-        if (!usersJson) return [];
+        const usersJson = CookieService.get("users") || "[]";
+        if (!usersJson) return;
 
         const oldUsers: User[] = JSON.parse(usersJson);
         const newUsers = mergeListsByProperty<User>("id", oldUsers, [user]);
