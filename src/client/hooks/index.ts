@@ -4,3 +4,4 @@ export * from "./useForceUpdate";
 export * from "./useInterval";
 export * from "./useWindowSize";
 export * from "./useQueryParams";
+export * from "./useCookies";
