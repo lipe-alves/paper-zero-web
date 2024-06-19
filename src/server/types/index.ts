@@ -1,4 +1,5 @@
 import { ApiResponse } from "@server/services";
+import type { NextRequest } from "next/server";
 
 export interface RequestData {
     headers?: Partial<{
@@ -6,9 +7,6 @@ export interface RequestData {
     }>;
     query: Partial<{
         [key: string]: string | string[];
-    }>;
-    cookies: Partial<{
-        [key: string]: string;
     }>;
     params: Partial<{
         [key: string]: string;
@@ -18,16 +16,16 @@ export interface RequestData {
     }>;
 }
 
-export interface ApiRequest<InputData extends RequestData> extends Request {
+export interface ApiRequest<InputData extends RequestData> extends NextRequest {
     query: InputData["query"];
     params: InputData["params"];
-    body: InputData["body"] & Request["body"];
-    cookies: InputData["cookies"];
+    body: InputData["body"] & NextRequest["body"];
+    cookies: NextRequest["cookies"];
 }
 
-export type Middleware<T extends RequestData> = (
+export type Middleware<T extends RequestData = any> = (
     req: ApiRequest<T>
-) => void | Promise<void>;
+) => void | ApiResponde | Promise<void | ApiResponde>;
 
 export type Controller<InputData extends RequestData, OutputData> = (
     req: ApiRequest<InputData>
