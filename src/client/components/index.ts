@@ -10,3 +10,5 @@ export { Spinner } from "./Spinner";
 export type { SpinnerProps } from "./Spinner";
 export { Protected } from "./Protected";
 export type { ProtectedProps } from "./Protected";
+export { App } from "./App";
+export type { AppProps } from "./App";

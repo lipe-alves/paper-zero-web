@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 
 import { APPLICATION_NAME } from "@shared/constants";
 import { i18nConfig, Language, translate } from "@shared/i18n";
+
+import { Composer, ComponentList, App } from "@client/components";
 import {
     I18nProvider,
     LoaderProvider,
@@ -12,7 +14,6 @@ import {
     NavigationProvider,
     AuthProvider,
 } from "@client/providers";
-import { Composer, ComponentList } from "@client/components";
 
 import "@client/styles/fonts.scss";
 import "@client/styles/reset.css";
@@ -68,7 +69,9 @@ function RootLayout(props: RootLayoutProps) {
     return (
         <html lang={params.lang}>
             <body className={inter.className}>
-                <Composer components={providers}>{children}</Composer>
+                <Composer components={providers}>
+                    <App>{children}</App>
+                </Composer>
             </body>
         </html>
     );
