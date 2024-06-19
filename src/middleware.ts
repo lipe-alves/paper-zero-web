@@ -1,11 +1,10 @@
 import {
     stackMiddlewares,
-    bodyToJsonMiddleware,
     langMiddleware,
     loggerMiddleware,
 } from "./server/middlewares";
 
-const middlewares = [langMiddleware, bodyToJsonMiddleware, loggerMiddleware];
+const middlewares = [langMiddleware, loggerMiddleware];
 const middleware = stackMiddlewares(middlewares);
 
 const config = {
