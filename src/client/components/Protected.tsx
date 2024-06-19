@@ -10,10 +10,10 @@ interface ProtectedProps {
 function Protected(props: ProtectedProps) {
     const { children } = props;
     const { user } = useAuth();
-    const { navigate } = useNavigation();
+    const { navigate, currentPath } = useNavigation();
 
     useEffect(() => {
-        if (!user?.id) return navigate("/login");
+        if (!user?.id) return navigate(`/login/?redirect=${currentPath}`);
     }, [user?.id]);
 
     return <>{children}</>;

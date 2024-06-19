@@ -2,9 +2,9 @@
 
 import React from "react";
 
-import { useI18n, useNavigation } from "@client/providers";
+import { useI18n, useNavigation, useAuth, useLoader } from "@client/providers";
 import { Input, Button, I18nLink } from "@client/components";
-import { handleChangeModelProp } from "@shared/utils";
+import { useQueryParams } from "@client/hooks";
 
 import { useAuthentication } from "../../_providers";
 
@@ -14,10 +14,13 @@ import { Facebook, Twitter, Google } from "styled-icons/boxicons-logos";
 import styles from "./styles.module.scss";
 
 function Main() {
+    const loader = useLoader();
+    const { login } = useAuth();
     const { t } = useI18n();
     const { navigate } = useNavigation();
     const { password, setPassword, email, setEmail, emailIsValid } =
         useAuthentication();
+    const { redirect } = useQueryParams();
 
     const handleChangeUserPassword = (
         evt: React.ChangeEvent<HTMLInputElement>
@@ -29,6 +32,18 @@ function Main() {
         evt: React.ChangeEvent<HTMLInputElement>
     ) => {
         setEmail(evt.target.value);
+    };
+
+    const handleSubmit = async () => {
+        loader.show();
+
+        await login(email, password);
+
+        if (redirect) {
+            navigate(redirect);
+        } else {
+            navigate("/auth/dashboard");
+        }
     };
 
     return (
@@ -51,9 +66,7 @@ function Main() {
                     onChange={handleChangeUserEmail}
                     value={email}
                     error={
-                        email && !emailIsValid
-                            ? t("Email inválido")
-                            : undefined
+                        email && !emailIsValid ? t("Email inválido") : undefined
                     }
                 />
                 <Input
@@ -70,6 +83,7 @@ function Main() {
                     className={styles.MainSubmit}
                     variant="contained"
                     tone="70"
+                    onClick={handleSubmit}
                 >
                     {t("Entrar")}
                 </Button>

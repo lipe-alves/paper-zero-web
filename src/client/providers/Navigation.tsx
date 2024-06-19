@@ -14,6 +14,7 @@ interface NavigationOptions {
 interface NavigationValue {
     navigate: (path: string, options?: NavigationOptions) => void;
     isCurrentRoute: (path: string) => boolean;
+    currentPath: string;
 }
 
 const NavigationContext = createContext<NavigationValue | undefined>(undefined);
@@ -23,7 +24,8 @@ function NavigationProvider(props: ContextProviderProps) {
     const { lang: selectedLang } = useI18n();
 
     const router = useRouter();
-    const currentRoute = usePathname();
+    const pathname = usePathname();
+    const currentPath = pathname.replace(`/${selectedLang}`, "");
 
     const navigate = (path: string, options: NavigationOptions = {}) => {
         const { lang = selectedLang } = options;
@@ -32,7 +34,6 @@ function NavigationProvider(props: ContextProviderProps) {
 
     const isCurrentRoute = (path: string) => {
         path = path.replace(`/${selectedLang}`, "");
-        const currentPath = currentRoute.replace(`/${selectedLang}`, "");
         return path === currentPath;
     };
 
@@ -41,6 +42,7 @@ function NavigationProvider(props: ContextProviderProps) {
             value={{
                 navigate,
                 isCurrentRoute,
+                currentPath,
             }}
         >
             {children}
