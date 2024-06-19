@@ -3,6 +3,8 @@ import axios, { AxiosInstance } from "axios";
 interface ApiServiceConfig {
     baseURL: string;
     timeout?: number;
+    success?: (response: any) => any;
+    error?: (response: any) => any;
 }
 
 interface Body {
@@ -20,12 +22,23 @@ class ApiService implements ApiServiceModel {
     private endpoint: AxiosInstance;
 
     private constructor(config: ApiServiceConfig) {
-        const { baseURL, timeout = 0 } = config;
+        const { baseURL, timeout = 0, success, error } = config;
 
         this.endpoint = axios.create({
             baseURL,
             timeout,
         });
+
+        this.endpoint.interceptors.response.use(
+            (data) => {
+                if (!success) return data;
+                return success(data);
+            },
+            (data) => {
+                if (!error) return Promise.reject(data);
+                return Promise.reject(error(data));
+            }
+        );
     }
 
     public async get<T = any>(path: string): Promise<T> {
