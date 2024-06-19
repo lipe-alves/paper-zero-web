@@ -2,7 +2,13 @@
 
 import React from "react";
 
-import { useI18n, useNavigation, useAuth, useLoader } from "@client/providers";
+import {
+    useI18n,
+    useNavigation,
+    useAuth,
+    useLoader,
+    useToast,
+} from "@client/providers";
 import { Input, Button, I18nLink } from "@client/components";
 import { useQueryParams } from "@client/hooks";
 
@@ -15,9 +21,11 @@ import styles from "./styles.module.scss";
 
 function Main() {
     const loader = useLoader();
+    const toast = useToast();
     const { login } = useAuth();
     const { t } = useI18n();
     const { navigate } = useNavigation();
+
     const { password, setPassword, email, setEmail, emailIsValid } =
         useAuthentication();
     const { redirect } = useQueryParams();
@@ -37,12 +45,20 @@ function Main() {
     const handleSubmit = async () => {
         loader.show();
 
-        await login(email, password);
+        try {
+            await login(email, password);
 
-        if (redirect) {
-            navigate(redirect);
-        } else {
-            navigate("/auth/dashboard");
+            if (redirect) {
+                navigate(redirect);
+            } else {
+                navigate("/auth/dashboard");
+            }
+        } catch (error) {
+            const err = error as Error;
+            console.error(err);
+            toast.error(err.message);
+        } finally {
+            loader.hide();
         }
     };
 
@@ -81,9 +97,9 @@ function Main() {
                 <Button
                     fullWidth
                     className={styles.MainSubmit}
+                    onClick={handleSubmit}
                     variant="contained"
                     tone="70"
-                    onClick={handleSubmit}
                 >
                     {t("Entrar")}
                 </Button>

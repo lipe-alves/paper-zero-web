@@ -3,8 +3,10 @@
 import React from "react";
 
 import { PASSWORD_MIN_LENGTH } from "@shared/constants";
-import { useI18n, useNavigation } from "@client/providers";
+import { useI18n, useNavigation, useLoader, useToast } from "@client/providers";
 import { Input, Button, I18nLink } from "@client/components";
+import { paperZeroApi } from "@client/services";
+
 import { User } from "@shared/models";
 import { handleChangeModelProp } from "@shared/utils";
 
@@ -20,6 +22,9 @@ import styles from "./styles.module.scss";
 function Main() {
     const { t } = useI18n();
     const { navigate } = useNavigation();
+    const loader = useLoader();
+    const toast = useToast();
+
     const {
         user,
         password,
@@ -47,6 +52,21 @@ function Main() {
         evt: React.ChangeEvent<HTMLInputElement>
     ) => {
         setConfirmPassword(evt.target.value);
+    };
+
+    const handleSubmit = async () => {
+        loader.show();
+
+        try {
+            await paperZeroApi.auth.register(user.name, user.email, password);
+            navigate("/login/?redirect=/auth/dashboard");
+        } catch (error) {
+            const err = error as Error;
+            console.error(err);
+            toast.error(err.message);
+        } finally {
+            loader.hide();
+        }
     };
 
     const passwordRuleToLabel = {
@@ -162,6 +182,7 @@ function Main() {
                 />
                 <Button
                     fullWidth
+                    onClick={handleSubmit}
                     variant="contained"
                     tone="70"
                 >
