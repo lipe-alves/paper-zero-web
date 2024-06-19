@@ -11,6 +11,10 @@ import { ApiService } from "@shared/services";
 const endpoint = ApiService.create({
     baseURL: "/api",
     timeout: 0,
+    error: (error) => {
+        const err = error.response.data as Error;
+        return err;
+    },
 });
 
 const paperZeroApi = {
