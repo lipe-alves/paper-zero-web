@@ -7,16 +7,15 @@ type PingControllerInput = RequestData;
 
 interface PingControllerOutput {
     url?: string;
-    headers?: RequestData["headers"];
     query?: RequestData["query"];
     body?: RequestData["body"];
     date: Date;
 }
 
 const pingController = async function (req) {
-    const { email, password } = req.body;
-
     try {
+        const body = await req.json();
+
         return ApiResponse.send({
             status: 200,
             code: RESPONSE_CODES.SUCCESS,
@@ -26,7 +25,7 @@ const pingController = async function (req) {
                 url: req.url,
                 headers: req.headers,
                 query: req.query,
-                body: req.body,
+                body,
                 date: new Date(),
             },
         });

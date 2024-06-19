@@ -20,9 +20,10 @@ interface LoginControllerOutput {
 }
 
 const loginController = async function (req) {
-    const { email, password } = req.body;
-
     try {
+        const body = await req.json();
+        const { email, password } = body;
+
         if (!email) {
             throw new ClientError({
                 message: "Email é obrigatório",

@@ -21,10 +21,10 @@ interface RegisterControllerOutput {
 }
 
 const registerController = async function (req) {
-    const { name, email, password } = req.body;
-    console.log("req.body", req.body);
-
     try {
+        const body = await req.json();
+        const { name, email, password } = body;
+
         if (!name) {
             throw new ClientError({
                 message: "Nome é obrigatório",

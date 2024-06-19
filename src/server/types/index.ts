@@ -2,9 +2,6 @@ import { ApiResponse } from "@server/services";
 import type { NextRequest } from "next/server";
 
 export interface RequestData {
-    headers?: Partial<{
-        [key: string]: string;
-    }>;
     query: Partial<{
         [key: string]: string | string[];
     }>;
@@ -19,13 +16,12 @@ export interface RequestData {
 export interface ApiRequest<InputData extends RequestData> extends NextRequest {
     query: InputData["query"];
     params: InputData["params"];
-    body: InputData["body"] & NextRequest["body"];
-    cookies: NextRequest["cookies"];
+    json(): Promise<InputData["body"]>;
 }
 
 export type Middleware<T extends RequestData = any> = (
     req: ApiRequest<T>
-) => void | ApiResponde | Promise<void | ApiResponde>;
+) => void | ApiResponse<any> | Promise<void | ApiResponse<any>>;
 
 export type Controller<InputData extends RequestData, OutputData> = (
     req: ApiRequest<InputData>
