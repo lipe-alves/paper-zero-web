@@ -1,4 +1,6 @@
-import { useMemo, useState } from "react";
+"use client";
+
+import { useMemo } from "react";
 
 interface QueryParams {
     [key: string]: string | undefined;
@@ -8,19 +10,27 @@ interface QueryParams {
  * Returns query params of location url
  */
 function useQueryParams(): QueryParams {
-    const params = useMemo(() => {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
+    if (typeof window === "undefined") {
+        return {};
+    }
 
-        const entries = Object.entries(urlParams);
+    const params = useMemo(() => {
+        if (!window) return {};
+
+        const queryString = window.location.search;
+        const urlParams = queryString
+            .replace("?", "")
+            .split("&")
+            .map((keyValuePairStr) => keyValuePairStr.split("="));
+
         const params: QueryParams = {};
 
-        for (const [key, value] of entries) {
+        for (const [key, value] of urlParams) {
             params[key] = value;
         }
 
         return params;
-    }, [window.location.search]);
+    }, [window?.location.search]);
 
     return params;
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useLayoutEffect } from "react";
 
 type Size = [width: number, height: number];
@@ -6,11 +8,17 @@ type Size = [width: number, height: number];
 function useWindowSize() {
     const [size, setSize] = useState<Size>([0, 0]);
 
+    if (typeof window === "undefined") {
+        return size;
+    }
+
     const updateSize = () => {
+        if (!window) return;
         setSize([window.innerWidth, window.innerHeight]);
     };
 
     useLayoutEffect(() => {
+        if (!window) return;
         window.addEventListener("resize", updateSize);
         updateSize();
         return () => window.removeEventListener("resize", updateSize);
