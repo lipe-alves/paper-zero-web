@@ -1,7 +1,8 @@
-import { PingOutput } from "@server/domains/tests/controllers";
+import { PingControllerOutput } from "@server/domains/tests/controllers";
 import {
     SessionControllerOutput,
     LoginControllerOutput,
+    RegisterControllerOutput,
 } from "@server/domains/auth/controllers";
 
 import { ResponseFormat } from "@shared/types";
@@ -16,10 +17,8 @@ const paperZeroApi = {
     endpoint,
 
     tests: {
-        async ping(): Promise<ResponseFormat<PingOutput>> {
-            const data = await endpoint.get<ResponseFormat<PingOutput>>(
-                "/tests/ping"
-            );
+        async ping(): Promise<ResponseFormat<PingControllerOutput>> {
+            const data = await endpoint.get("/tests/ping");
             return data;
         },
     },
@@ -29,10 +28,10 @@ const paperZeroApi = {
             email: string,
             password: string
         ): Promise<ResponseFormat<LoginControllerOutput>> {
-            const data = await endpoint.post<
-                ResponseFormat<LoginControllerOutput>
-            >("/auth/login", { email, password });
-
+            const data = await endpoint.post("/auth/login", {
+                email,
+                password,
+            });
             return data;
         },
         async logout() {
@@ -41,9 +40,19 @@ const paperZeroApi = {
         async recoverSession(): Promise<
             ResponseFormat<SessionControllerOutput>
         > {
-            const data = await endpoint.get<
-                ResponseFormat<SessionControllerOutput>
-            >("/auth/session");
+            const data = await endpoint.get("/auth/session");
+            return data;
+        },
+        async register(
+            name: string,
+            email: string,
+            password: string
+        ): Promise<ResponseFormat<RegisterControllerOutput>> {
+            const data = await endpoint.put("/auth/register", {
+                name,
+                email,
+                password,
+            });
             return data;
         },
     },

@@ -1,25 +1,29 @@
 import { EntityId } from "@shared/types";
+import { generateId } from "@shared/utils";
 
 class User {
     public id: EntityId;
     public name: string;
-    public email?: string;
+    public email: string;
     public phone?: string;
+    public password: string;
 
     constructor(data: Partial<User> = {}) {
         const {
-            id = "",
+            id = generateId(),
             name = "",
             firstName = "",
             lastName = "",
             email = "",
             phone = "",
+            password = "",
         } = data;
 
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.password = password;
 
         if (firstName) this.firstName = firstName;
         if (lastName) this.lastName = lastName;

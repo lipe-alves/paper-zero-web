@@ -3,11 +3,10 @@ import { Controller, RequestData } from "@server/types";
 import { ApiError } from "@server/errors";
 import { RESPONSE_CODES } from "@shared/constants";
 
-type PingInput = RequestData;
+type PingControllerInput = RequestData;
 
-interface PingOutput {
+interface PingControllerOutput {
     url?: string;
-    cookies?: RequestData["cookies"];
     headers?: RequestData["headers"];
     query?: RequestData["query"];
     body?: RequestData["body"];
@@ -25,7 +24,6 @@ const pingController = async function (req) {
             message: "Ping!",
             data: {
                 url: req.url,
-                cookies: req.cookies,
                 headers: req.headers,
                 query: req.query,
                 body: req.body,
@@ -35,8 +33,8 @@ const pingController = async function (req) {
     } catch (error) {
         return ApiResponse.send(ApiError.from(error));
     }
-} as Controller<PingInput, PingOutput>;
+} as Controller<PingControllerInput, PingControllerOutput>;
 
 export { pingController };
-export type { PingInput, PingOutput };
+export type { PingControllerInput, PingControllerOutput };
 export default pingController;

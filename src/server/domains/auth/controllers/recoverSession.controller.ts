@@ -1,6 +1,9 @@
 import { ApiResponse } from "@server/services";
 import { Controller, RequestData } from "@server/types";
 import { ApiError } from "@server/errors";
+import { Unauthenticated } from "@server/domains/auth/errors";
+
+import { recoverSessionUseCase } from "../use-cases";
 
 import { User } from "@shared/models";
 import { RESPONSE_CODES } from "@shared/constants";
@@ -14,13 +17,19 @@ interface SessionControllerOutput {
 
 const recoverSessionController = async function (req) {
     try {
+        const { user } = await recoverSessionUseCase({});
+
+        if (!user) {
+            throw new Unauthenticated();
+        }
+
         return ApiResponse.send({
             status: 200,
             success: true,
             code: RESPONSE_CODES.SUCCESS,
             message: "Logado com sucesso!",
             data: {
-                user: new User(),
+                user,
                 token: "",
             },
         });

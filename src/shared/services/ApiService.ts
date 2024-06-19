@@ -10,10 +10,10 @@ interface Body {
 }
 
 interface ApiServiceModel {
-    post<T>(path: string, body?: Body): Promise<T>;
-    put<T>(path: string, body?: Body): Promise<T>;
-    patch<T>(path: string, body?: Body): Promise<T>;
-    get<T>(path: string): Promise<T>;
+    post<T = any>(path: string, body?: Body): Promise<T>;
+    put<T = any>(path: string, body?: Body): Promise<T>;
+    patch<T = any>(path: string, body?: Body): Promise<T>;
+    get<T = any>(path: string): Promise<T>;
 }
 
 class ApiService implements ApiServiceModel {
@@ -28,22 +28,22 @@ class ApiService implements ApiServiceModel {
         });
     }
 
-    public async get<T>(path: string): Promise<T> {
+    public async get<T = any>(path: string): Promise<T> {
         const { data } = await this.endpoint.get(path);
         return data as T;
     }
 
-    public async post<T>(path: string, body?: Body): Promise<T> {
+    public async post<T = any>(path: string, body?: Body): Promise<T> {
         const { data } = await this.endpoint.post(path, body);
         return data as T;
     }
 
-    public async put<T>(path: string, body?: Body): Promise<T> {
+    public async put<T = any>(path: string, body?: Body): Promise<T> {
         const { data } = await this.endpoint.put(path, body);
         return data as T;
     }
 
-    public async patch<T>(path: string, body?: Body): Promise<T> {
+    public async patch<T = any>(path: string, body?: Body): Promise<T> {
         const { data } = await this.endpoint.patch(path, body);
         return data as T;
     }
