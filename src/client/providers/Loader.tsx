@@ -5,7 +5,7 @@ import { ContextProviderProps } from "@client/types";
 
 interface LoaderValue {
     show: () => void;
-    hide: () => NodeJS.Timeout;
+    hide: () => void;
     visible: boolean;
     delay: number;
 }
@@ -19,9 +19,13 @@ function LoaderProvider(props: ContextProviderProps) {
     const visible = processes > 0;
     const delay = 3000;
 
-    const show = () => setProcesses((prev) => prev + 1);
-    const hide = () =>
+    const show = () => {
+        setProcesses((prev) => prev + 1);
+    };
+
+    const hide = () => {
         setTimeout(() => setProcesses((prev) => Math.max(prev - 1, 0)), delay);
+    };
 
     return (
         <LoaderContext.Provider
