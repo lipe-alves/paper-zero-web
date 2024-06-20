@@ -15,7 +15,7 @@ interface SessionControllerOutput {
     user: User;
 }
 
-const recoverSessionController = async function (req) {
+const recoverSessionController = async function () {
     try {
         const { user } = await recoverSessionUseCase({});
 

@@ -1,7 +1,5 @@
 import { UseCase } from "@server/types";
-import { WrongEmail, WrongPassword } from "@server/domains/auth/errors";
 import { AuthService } from "@server/domains/auth/services";
-import { UserService } from "@server/domains/users/services";
 
 import { User } from "@shared/models";
 

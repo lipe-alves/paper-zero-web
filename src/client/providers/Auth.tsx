@@ -9,6 +9,7 @@ import { User } from "@shared/models";
 import { useLoader } from "./Loader";
 
 interface AuthValue {
+    sessionLoaded: boolean;
     user?: User;
     login: (email: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
@@ -17,6 +18,7 @@ interface AuthValue {
 const AuthContext = createContext<AuthValue | undefined>(undefined);
 
 function AuthProvider(props: { children: React.ReactNode }) {
+    const [sessionLoaded, setSessionLoaded] = useState(false);
     const [user, setUser] = useState<User>();
     const loader = useLoader();
 
@@ -35,15 +37,18 @@ function AuthProvider(props: { children: React.ReactNode }) {
         loader.show();
         try {
             const { data } = await paperZeroApi.auth.recoverSession();
+            console.log("data", data);
             setUser(data.user);
         } finally {
             loader.hide();
+            setSessionLoaded(true);
         }
     }, []);
 
     return (
         <AuthContext.Provider
             value={{
+                sessionLoaded,
                 user,
                 login,
                 logout,

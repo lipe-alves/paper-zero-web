@@ -9,12 +9,15 @@ interface ProtectedProps {
 
 function Protected(props: ProtectedProps) {
     const { children } = props;
-    const { user } = useAuth();
+    const { sessionLoaded, user } = useAuth();
     const { navigate, currentPath } = useNavigation();
 
     useEffect(() => {
-        if (!user?.id) return navigate(`/login/?redirect=${currentPath}`);
-    }, [user?.id]);
+        if (!sessionLoaded) return;
+        
+        const loggedIn = !!user?.id;
+        if (!loggedIn) return navigate(`/login/?redirect=${currentPath}`);
+    }, [user?.id, sessionLoaded]);
 
     return <>{children}</>;
 }
