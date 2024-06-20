@@ -28,7 +28,7 @@ function Main() {
 
     const { password, setPassword, email, setEmail, emailIsValid } =
         useAuthentication();
-    const { redirect } = useQueryParams();
+    const { redirect = "/auth/dashboard" } = useQueryParams();
 
     const handleChangeUserPassword = (
         evt: React.ChangeEvent<HTMLInputElement>
@@ -47,12 +47,7 @@ function Main() {
 
         try {
             await login(email, password);
-
-            if (redirect) {
-                navigate(redirect);
-            } else {
-                navigate("/auth/dashboard");
-            }
+            navigate(redirect);
         } catch (error) {
             const err = error as Error;
             console.error(err);
