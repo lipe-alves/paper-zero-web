@@ -12,3 +12,5 @@ export { Protected } from "./Protected";
 export type { ProtectedProps } from "./Protected";
 export { App } from "./App";
 export type { AppProps } from "./App";
+export { Avatar } from "./Avatar";
+export type { AvatarProps } from "./Avatar";
