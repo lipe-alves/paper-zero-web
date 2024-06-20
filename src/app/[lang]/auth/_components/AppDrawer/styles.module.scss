@@ -1,0 +1,52 @@
+@import "@client/styles/variables";
+
+.AppDrawer {
+    &,
+    &Paper {
+        position: relative !important;
+        width: 50px;
+        height: 100%;
+        transition: width 0.5s ease-in-out;
+        overflow-x: hidden;
+    }
+
+    &[data-open="true"],
+    &[data-open="true"] &Paper {
+        width: 300px;
+    }
+
+    &Header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    &List {
+        &Item {
+            display: block;
+
+            &Button {
+                height: 60px;
+                padding: 0 $spacing-md;
+                justify-content: center;
+            }
+
+            &Icon {
+                justify-content: center;
+
+                svg {
+                    width: $font-lg;
+                }
+            }
+
+            &Text {
+                opacity: 0;
+            }
+        }
+    }
+
+    &[data-open="true"] &ListItemText {
+        opacity: 1;
+    }
+}
