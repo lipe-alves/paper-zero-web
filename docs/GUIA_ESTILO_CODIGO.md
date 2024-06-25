@@ -21,11 +21,11 @@ Identificadores devem usar apenas letras, dígitos e `_` e seguir o idioma Ingl�
     -   Caso a importação seja feita apenas de uma função, devemos usar camelCase. Exemplo: `import { snakeToCase } from '@shared/utils'`.
     -   Caso a importação seja de um módulo exportado como default, a importação deve seguir o nome da exportação:
         -   Exemplo: `import UserService from '@shared/services/UserService.ts`.
-        -   Exemplo: `import MyComponent from '@client/components/MyComponent`.
+        -   Exemplo: `import MyComponent from '@client/components/ui/MyComponent`.
     -   Sempre omitir o trecho `index.ts` da importação:
-        -   Errado: `import MyComponent from '@client/components/MyComponent/index.ts`.
-        -   Errado: `import MyComponent from '@client/components/MyComponent/`.
-        -   Certo: `import MyComponent from '@client/components/MyComponent`.
+        -   Errado: `import MyComponent from '@client/components/ui/MyComponent/index.ts`.
+        -   Errado: `import MyComponent from '@client/components/ui/MyComponent/`.
+        -   Certo: `import MyComponent from '@client/components/ui/MyComponent`.
 -   **Constantes**: Usar `CONSTANT_CASE` para indicar constantes globais.
 -   **Enumeradores**: **Não** utilizar `E` na frente de nome de enumeradores. No nome do enumerador utilizar o formato `PascalCase`
 

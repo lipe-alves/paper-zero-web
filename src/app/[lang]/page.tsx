@@ -1,10 +1,10 @@
-import { Header, Main } from "./_components";
+import { LoginProvider } from "./login/_providers";
+import LoginPage from "./login/page";
 
 const Home = () => (
-    <>
-        <Header />
-        <Main />
-    </>
+    <LoginProvider>
+        <LoginPage />
+    </LoginProvider>
 );
 
 export default Home;

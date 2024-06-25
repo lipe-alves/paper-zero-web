@@ -1,3 +1,7 @@
+@import "variables";
+@import "functions";
+@import "colors";
+
 @mixin keyframes($name) {
     @-webkit-keyframes #{$name} {
         @content;
@@ -18,4 +22,44 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+}
+
+@mixin disable-img-drag {
+    user-drag: none;
+    -webkit-user-drag: none;
+    @include disable-selection;
+}
+
+@mixin spread-color-palette {
+    & {
+        --current-color: red;
+
+        @each $color-type in $color-types {
+            &[data-color="#{$color-type}"] {
+                @if array-contains($color-type, $logos) {
+                    --current-color: var(--#{$color-type});
+                } @else {
+                    @each $tone in $tones {
+                        &[data-tone="#{$tone}"] {
+                            --current-color: var(--#{$color-type}-#{$tone});
+
+                            &:hover {
+                                $old-index: index-of($tone, $tones);
+                                $new-index: $old-index + 1;
+                                $max-index: length($tones);
+                                $new-tone: nth(
+                                    $tones,
+                                    min(max(1, $new-index), $max-index)
+                                );
+
+                                --current-color: var(
+                                    --#{$color-type}-#{$new-tone}
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

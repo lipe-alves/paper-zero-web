@@ -1,0 +1,23 @@
+@import "@client/styles/variables";
+@import "@client/styles/mixins";
+
+.Button {
+    @include spread-color-palette;
+    text-transform: none !important;
+    padding: $spacing-xs $spacing-sm !important;
+
+    &[data-variant="contained"] {
+        background-color: var(--current-color);
+        color: #fff;
+    }
+
+    &[data-variant="outlined"] {
+        background-color: transparent;
+        color: var(--current-color);
+    }
+
+    &[data-transparent="true"] {
+        background-color: transparent;
+        color: var(--current-color);
+    }
+}

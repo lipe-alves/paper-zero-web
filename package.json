@@ -5,7 +5,8 @@
     "scripts": {
         "build": "node tasks/build.js",
         "dev": "node tasks/dev.js",
-        "start": "node tasks/start.js"
+        "start": "node tasks/start.js",
+        "create:component": "node tasks/create-client-component.js --type=$TYPE --name=$NAME"
     },
     "dependencies": {
         "@emotion/react": "^11.11.4",
@@ -21,6 +22,7 @@
         "react": "^18",
         "react-dom": "^18",
         "react-toastify": "^10.0.5",
+        "sharp": "^0.33.4",
         "styled-components": "^6.1.11",
         "styled-icons": "^10.47.1"
     },
@@ -31,6 +33,7 @@
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
+        "jsonc-loader": "^0.1.1",
         "sass": "^1.77.5",
         "typescript": "^5"
     }

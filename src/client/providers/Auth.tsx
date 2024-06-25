@@ -37,8 +37,8 @@ function AuthProvider(props: { children: React.ReactNode }) {
         loader.show();
         try {
             const { data } = await paperZeroApi.auth.recoverSession();
-            console.log("data", data);
             setUser(data.user);
+        } catch {
         } finally {
             loader.hide();
             setSessionLoaded(true);

@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 
 import { APPLICATION_NAME } from "@shared/constants";
 import { translate } from "@shared/i18n";
-import { Composer, ComponentList } from "@client/components";
+import { Composer, ComponentList } from "@client/components/ui";
 import { RootLayoutProps } from "@app/[lang]/layout";
 
-import { AuthenticationProvider } from "./_providers";
+import { LoginProvider } from "./_providers";
 
 interface LoginLayoutProps extends RootLayoutProps {
     params: RootLayoutProps["params"];
@@ -27,7 +27,7 @@ function generateMetadata(props: LoginLayoutProps): Metadata {
 function LoginLayout(props: LoginLayoutProps) {
     const { children } = props;
 
-    const providers: ComponentList = [AuthenticationProvider];
+    const providers: ComponentList = [LoginProvider];
 
     return <Composer components={providers}>{children}</Composer>;
 }

@@ -1,0 +1,28 @@
+@import "@client/styles/variables";
+
+.Logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+
+    &:hover {
+        opacity: 0.5;
+        text-decoration: none;
+    }
+
+    &Icon {
+        color: var(--highlight-50);
+        width: 35px;
+        height: 35px;
+    }
+
+    &Text {
+        font-size: $font-sm;
+        font-weight: $font-bold;
+        color: var(--text-50);
+    }
+}

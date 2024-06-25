@@ -1,26 +1,17 @@
+import {
+    THEME_LIST,
+    COLOR_TYPES,
+    INPUT_VARIANTS,
+    BUTTON_VARIANTS,
+    TONES,
+} from "@client/constants";
+
 export interface ContextProviderProps {
     children: React.ReactNode;
 }
 
-export type Color =
-    | "primary"
-    | "secondary"
-    | "text"
-    | "info"
-    | "success"
-    | "warning"
-    | "error";
-export type InputVariant = "filled" | "outlined" | "standard";
-export type ButtonVariant = "contained" | "outlined";
-export type Tone =
-    | "00"
-    | "10"
-    | "20"
-    | "30"
-    | "40"
-    | "50"
-    | "60"
-    | "70"
-    | "80"
-    | "90"
-    | "100";
+export type Color = (typeof COLOR_TYPES)[number];
+export type InputVariant = (typeof INPUT_VARIANTS)[number];
+export type ButtonVariant = (typeof BUTTON_VARIANTS)[number];
+export type Tone = (typeof TONES)[number];
+export type Theme = (typeof THEME_LIST)[number];

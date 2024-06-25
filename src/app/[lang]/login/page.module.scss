@@ -1,0 +1,80 @@
+@import "@client/styles/variables";
+
+.Login {
+    &Form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: $spacing-lg;
+        width: 100%;
+        min-width: Min(480px, 100vw);
+        height: 100%;
+        background-color: var(--primary-50);
+        padding: $spacing-xl;
+
+        &Rows {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: $spacing-md;
+            width: 100%;
+        }
+
+        &Columns {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: $spacing-sm;
+            width: 100%;
+        }
+
+        &Title {
+            color: var(--text-50);
+            font-size: $font-md;
+            font-weight: $font-normal;
+        }
+
+        &Subtitle {
+            color: var(--text-50);
+            font-size: $font-sm;
+            font-weight: $font-light;
+        }
+
+        &Input {
+            flex: 1;
+        }
+
+        &CenteredText {
+            color: var(--text-30);
+            width: 100%;
+            text-align: center;
+        }
+
+        &Footer {
+            @extend .LoginFormRows;
+            align-items: center;
+        }
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .Login {
+        &Form {
+            max-width: 600px;
+            align-items: center;
+            flex: 1;
+
+            &Rows,
+            &Columns {
+                max-width: 410px;
+            }
+
+            &Title {
+                margin-top: 90px;
+            }
+        }
+    }
+}

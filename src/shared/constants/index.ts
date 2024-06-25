@@ -1,4 +1,6 @@
 export const APPLICATION_NAME = "PaperZero";
+export const APPLICATION_VERSION = "1.0.0";
+
 export const IMAGE_EXTENSIONS = [
     "jpg",
     "jpeg",

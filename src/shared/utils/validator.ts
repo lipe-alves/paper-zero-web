@@ -1,3 +1,5 @@
+import passwordValidationRules from "./passwordValidationRules";
+
 const validator = {
     cpf: (cpf: string) => {
         cpf = cpf.replace(/[^\d]+/g, "");
@@ -104,6 +106,13 @@ const validator = {
             "^(ht|f)tp(s?)://[0-9a-zA-Z]([-.w]*[0-9a-zA-Z])*(:(0-9)*)*(/?)([a-zA-Z0-9-.?,'/\\+&amp;%$#_+.=$*@!?:]*)?$";
         const url = new RegExp(regexQuery, "i");
         return url.test(value);
+    },
+    password: (value: string) => {
+        const passwordRuleEntries = Object.entries(passwordValidationRules) as [
+            key: keyof typeof passwordValidationRules,
+            validate: (value: string) => boolean
+        ][];
+        return passwordRuleEntries.every(([_, validate]) => validate(value));
     },
 };
 

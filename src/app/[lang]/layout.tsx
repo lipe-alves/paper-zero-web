@@ -5,7 +5,8 @@ import type { Metadata } from "next";
 import { APPLICATION_NAME } from "@shared/constants";
 import { i18nConfig, Language, translate } from "@shared/i18n";
 
-import { Composer, ComponentList, App } from "@client/components";
+import { Composer, ComponentList } from "@client/components/ui";
+import { App } from "@client/components/layout";
 import {
     I18nProvider,
     LoaderProvider,
@@ -13,6 +14,7 @@ import {
     ToastProvider,
     NavigationProvider,
     AuthProvider,
+    ThemeProvider,
 } from "@client/providers";
 
 import "@client/styles/fonts.scss";
@@ -56,9 +58,11 @@ function generateStaticParams() {
 
 function RootLayout(props: RootLayoutProps) {
     const { params, children } = props;
+    const { lang } = params;
 
     const providers: ComponentList = [
-        [I18nProvider, { lang: params.lang }],
+        [I18nProvider, { lang }],
+        ThemeProvider,
         LoaderProvider,
         ModalProvider,
         ToastProvider,
@@ -67,7 +71,10 @@ function RootLayout(props: RootLayoutProps) {
     ];
 
     return (
-        <html lang={params.lang}>
+        <html
+            lang={lang}
+            data-theme="light"
+        >
             <body className={inter.className}>
                 <Composer components={providers}>
                     <App>{children}</App>

@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 
 import { APPLICATION_NAME } from "@shared/constants";
 import { translate } from "@shared/i18n";
-import { Composer, ComponentList } from "@client/components";
+import { Composer, ComponentList } from "@client/components/ui";
 import { RootLayoutProps } from "@app/[lang]/layout";
 
-import { RegistrationProvider } from "./_providers";
+import { RegisterProvider } from "./_providers";
 
 interface RegisterLayoutProps extends RootLayoutProps {
     params: RootLayoutProps["params"];
@@ -27,7 +27,7 @@ function generateMetadata(props: RegisterLayoutProps): Metadata {
 function RegisterLayout(props: RegisterLayoutProps) {
     const { children } = props;
 
-    const providers: ComponentList = [RegistrationProvider];
+    const providers: ComponentList = [RegisterProvider];
 
     return <Composer components={providers}>{children}</Composer>;
 }

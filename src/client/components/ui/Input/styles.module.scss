@@ -1,0 +1,10 @@
+@import "@client/styles/variables";
+
+.Input {
+    font-size: $font-md;
+
+    &PasswordToggler {
+        width: $font-xl;
+        color: var(--text-50);
+    }
+}

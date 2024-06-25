@@ -1,0 +1,59 @@
+@import "@client/styles/variables";
+
+.ForgotPassword {
+    &Illustration {
+        width: 380px;
+    }
+
+    &Form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: $spacing-lg;
+        width: 100%;
+        min-width: Min(430px, 100vw);
+        height: 100%;
+        background-color: var(--primary-50);
+        padding: $spacing-xl;
+
+        &Title {
+            color: var(--text-50);
+            font-size: $font-md;
+            font-weight: $font-normal;
+        }
+
+        &Subtitle {
+            color: var(--text-50);
+            font-size: $font-sm;
+            font-weight: $font-light;
+        }
+
+        &Header,
+        &Body,
+        &Footer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: $spacing-sm;
+            width: 100%;
+        }
+
+        &Body {
+            gap: $spacing-md;
+        }
+
+        &Footer {
+            align-items: center;
+        }
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .ForgotPassword {
+        &Form {
+            max-width: 600px;
+        }
+    }
+}

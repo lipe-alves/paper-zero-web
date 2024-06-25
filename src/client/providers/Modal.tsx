@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from "react";
 
-import { ModalProps } from "@client/components";
+import { ModalProps } from "@client/components/ui";
 import { ContextProviderProps } from "@client/types";
 import { Optional } from "@shared/types";
 

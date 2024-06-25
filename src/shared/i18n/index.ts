@@ -1,6 +1,6 @@
 import { i18nConfig } from "./config";
-import pt from "./dictionaries/pt.json";
-import en from "./dictionaries/en.json";
+import pt from "./dictionaries/pt";
+import en from "./dictionaries/en";
 
 type ReplaceMatrix = string[] | { [key: string]: string };
 type Language = (typeof i18nConfig)["languages"][number];

@@ -1,0 +1,109 @@
+@import "@client/styles/variables";
+@import "@client/styles/mixins";
+
+.Public {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: var(--secondary-50);
+
+    &Logo {
+        position: absolute;
+        left: $spacing-lg;
+        top: $spacing-lg;
+        z-index: 10;
+    }
+
+    &Lang {
+        position: absolute;
+        left: $spacing-lg;
+        bottom: $spacing-lg;
+        z-index: 10;
+
+        svg {
+            color: var(--text-50) !important;
+        }
+    }
+
+    &Illustration,
+    &Aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: $spacing-lg;
+        height: 100%;
+    }
+
+    &Illustration {
+        position: relative;
+        align-items: center;
+        background-color: transparent;
+        flex: 1;
+
+        img {
+            @include disable-img-drag;
+        }
+
+        &Custom {
+            width: 490px;
+            height: 550px;
+        }
+
+        &Background {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 50%;
+        }
+    }
+
+    &Aside {
+        align-items: flex-start;
+        background-color: var(--primary-50);
+        min-width: Min(480px, 100vw);
+        max-width: 32vw;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .PublicIllustrationCustom {
+        width: 390px;
+        height: 450px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .PublicIllustrationCustom {
+        width: 290px;
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .Public {
+        &Illustration {
+            display: none;
+            flex: 0;
+        }
+
+        &Aside {
+            min-width: 100vw;
+            align-items: center;
+            flex: 1;
+        }
+
+        &Lang {
+            top: $spacing-lg;
+            right: $spacing-lg;
+            left: initial;
+            bottom: initial;
+        }
+    }
+}
